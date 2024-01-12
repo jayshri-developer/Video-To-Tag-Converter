@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video to Text Converter</title>
+
+    <!-- Add some CSS for styling -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            margin: 50px;
+        }
+
+        #upload-box {
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px dashed #ccc;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video to Text Converter</h1>
+
+    <!-- Larger box for file upload -->
+    <div id="upload-box">
+        <p>Click or drag a video file here to upload.</p>
+        <form action="/upload" method="post" enctype="multipart/form-data" id="upload-form">
+            <input type="file" name="video" accept="video/*" required>
+            <br>
+            <button type="submit">Convert to Text</button>
+        </form>
+    </div>
+
+    <!-- Optional: JavaScript for drag-and-drop functionality -->
+    <script>
+        const uploadBox = document.getElementById('upload-box');
+        const uploadForm = document.getElementById('upload-form');
+
+        // Add event listeners for drag-and-drop
+        uploadBox.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadBox.style.border = '2px dashed #39a8db';
+        });
+
+        uploadBox.addEventListener('dragleave', () => {
+            uploadBox.style.border = '2px dashed #ccc';
+        });
+
+        uploadBox.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadBox.style.border = '2px dashed #ccc';
+            const files = e.dataTransfer.files;
+            uploadForm.elements.video.files = files;
+        });
+    </script>
+</body>
+</html>
